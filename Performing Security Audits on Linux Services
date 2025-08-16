@@ -1,0 +1,37 @@
+1.       run a port scan on the localhost to check the status of port 80 by using the nmap command.
+         nmap -p 80 localhost
+ 
+2.       Repeat the port scan and redirect the Nmap output to a file named /nmap.first.
+         sudo nmap -p 80 localhost -oN /nmap
+ 
+3.       Display the firewall settings by using the firewall-cmd command.
+         sudo firewall-cmd --list-all
+ 
+4.       Display the firewall settings again and redirect the output to a file named /firewall.list.
+         sudo firewall-cmd --list-all > /firewall.list
+ 
+5.       Configure the firewall to allow port 80 by using the firewall-cmd command-make sure the settings are permanent and apply to the public zone.
+         sudo firewall-cmd --zone=public --add-port=80/tcp –permanent
+         sudo firewall-cmd –reload
+ 
+6.       Start the Apache httpd web service by using the systemctl command.
+         sudo systemctl start httpd
+ 
+7.       Display the path to the index.html file beginning with the /var directory to check whether the Apache configuration file provides the correct path to the file by using the cd and ls commands.
+         cd /var/www
+         ls
+ 
+8.       Correct the /etc/httpd/conf/httpd.conf configuration file by using the nano text editor.
+         sudo nano /etc/httpd/conf/httpd.conf
+ 
+9.       Start and enable the Apache
+         httpd web service by using the
+         systemctl command.
+         sudo systemctl start httpd
+         sudo systemctl enable httpd
+ 
+10.   Display the localhost website in the Firefox web browser by using the firefox command.
+         firefox http://localhost
+
+Day 1
+ 
