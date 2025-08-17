@@ -1,3 +1,4 @@
+Day 1
 1.       run a port scan on the localhost to check the status of port 80 by using the nmap command.
          nmap -p 80 localhost
  
@@ -33,5 +34,14 @@
 10.   Display the localhost website in the Firefox web browser by using the firefox command.
          firefox http://localhost
 
-Day 1
+
+
+Day 2
+
+11.  Granting the rw permission to the user, and r to the group and other identities to the file by using the chmod command
+         chmod 644 <file-name or file-path>
+
+12.  For downloading index.html page of this site - http://localhost/
+         wget http://localhost/index.html
+
  
