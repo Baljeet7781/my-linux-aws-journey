@@ -1,0 +1,2 @@
+The nmap utility's full name is Network Mapper.
+TCP Connect port scan : This follows three-way handshake i.e. SYN-SYN-ACK or SYN, SYN-ACK, ACK.
