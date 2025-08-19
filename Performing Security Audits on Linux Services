@@ -44,4 +44,14 @@ Day 2
 12.  For downloading index.html page of this site - http://localhost/
          wget http://localhost/index.html
 
+
+Day 4
+
+To run nmap scan on system: (TCP scan) nmap -sT 10.140.67.23
+(UDP scan) nmap -sU 10.140.67.23
+
+Disabling the scan's ping probes via the -PN option in TCP scan: nmap -sT -PN 10.140.67.23
+
+
+
  
