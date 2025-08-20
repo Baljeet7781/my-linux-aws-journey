@@ -10,3 +10,43 @@ nmap -sT 127.0.0.1
 
 UDP Scan
 nmap -sU 127.0.0.1
+
+20-08-2025
+**********
+
+Using nmap's advice of disabling the scan's ping probes via the -PN option.
+$ nmap -sT -PN 10.140.67.23
+
+For stopping the firewall services-
+# systemctl stop firewalld.service
+# systemctl status firewalld.service
+
+Note: If you have lowered your server's firewall to conduct these nmap scans, be sure to raise it again. Enter systemctl start firewalld.service.
+
+Understanding nmap port states
+1. open: 
+  > A service is actively listening on this port.
+  > It's like a shop with its door open and a sign saying "Welcome!"
+  > Risky if the service is not secured, attackers can interact with it.
+
+2. closed:
+  > The port is reachable, but no service listening.
+  > It's like a door that exists but is locked - you know someone lives there. 
+  > Confirms the system is alive at that IP.
+
+3. filtered:
+  > A firewall is blocking access to the port.
+  > nmap can't tell if the port is open or closed.
+  > It's like a hidden door behind a wall, you can't even see if its there.
+
+4. unfiltered
+  > nmap can reach the port, but can't determine if it's open or closed.
+  > It's like seeing a door but not knowing if its locked or open.
+
+5. open|filtered
+  > nmap can't tell if the port is open or filtered
+  > could be open but but hidden by a firewall
+
+6. closed|filtered
+  > nmap can't tell if the port is closed or filtered.
+  > could be locked or hidden - not enough info.
