@@ -1,0 +1,70 @@
+**Throughout this notes we will be working on two linux systems linux1 and linux2. 
+*************************
+*Turning on the firewall*
+*************************
+1. On linux1, running the command to view firewall status:
+sudo ufw status
+
+2. Command to enable the firewall
+sudo ufw enable
+
+3. On linux2, pinging the linux1 ip address. The ping command uses the Internet Control Message Protocol (ICMP). This traffic is allowed by default even when the firewall is enabled.
+
+4. On linux1, running the following command to view the status of the running firewall
+sudo ufw status verbose
+
+**************************
+*Block ICMP echo requests*
+**************************
+On linux1, running the following command to open /etc/ufw/before.rules in the vi editor
+sudo vi /etc/ufw/before.rules
+
+Press insert to enter editing mode, and then use the arrow keys on the keyboard to navigate through the file until we see the following line:
+-A ufw-before-input -p icmp --icmp-type echo-request -j ACCEPT
+
+At the beginning of the line, enter # to comment out the line.
+Press ESC to switch to command mode, and then enter :wq to write the file to disk and exit the vi text editor.
+
+Running the following command to reload the firewall
+sudo ufw reload
+
+On linux2 pinging the linux1 ip to verify that ICMP echo requests are blocked.
+
+
+****************************************
+*Allow SSH traffic through the firewall*
+****************************************
+On linux2, run the following command to attempt to create a SSH connection to linux1
+ssh <linux1IPAddress>
+It will fail since the firewall doesn't allow inbound SSH traffic.
+
+Running the following command to configure firewall rule in linux1
+sudo ufw allow from <linux2ipaddress> to any port 22
+
+Now, on linux2 running the following command to create the SSH connection to linux1, and when prompted for password enter the password.
+ssh <linux1ipaddress>
+
+
+*******************************
+*Block all traffic from linux2*
+*******************************
+
+On linux1, running the following command to configure a firewall rule that blocks all traffic from linux2
+sudo ufw deny from <linux2ipaddress> to any
+
+Now, run the following command to view the current numbered firewall rules:
+sudo ufw status numbered
+Firewall rules are evaluated from top to bottom. This means that SSH traffic from linux2 will still be allowed.
+
+Running the following command to delete the new rule, and then when prompted, press y:
+sudo ufw delete 2
+
+Running the following command to change the order of the firewall rules:
+sudo ufw insert 1 deny from <linux2ipaddress> to any
+
+Running the following command to view the order of the firewall rules after the change
+sudo ufw status numbered
+
+On linux2, running the following command to create an SSH connection to linux1
+ssh <linux1ipaddress>
+The connection will time out because all traffic from linux2 is denied.
