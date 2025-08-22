@@ -68,3 +68,5 @@ sudo ufw status numbered
 On linux2, running the following command to create an SSH connection to linux1
 ssh <linux1ipaddress>
 The connection will time out because all traffic from linux2 is denied.
+
+-End-
