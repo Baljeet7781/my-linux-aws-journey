@@ -1,0 +1,70 @@
+{Set Permissions in Linux}
+
+Add write for group:
+chmod g+w sample-original.txt
+
+Remove read for group & others:
+chmod go-r sample-original.txt
+
+Full access for all:
+chmod 777 sample-original.txt
+
+User: rwx, Group: r, Others: none:
+chmod 740 sample-original.txt
+
+User: rw, Group: rx, Others: r:
+chmod 654 sample-original.txt
+
+User: rw, Group: r, Others: r:
+chmod 644 sample-original.txt
+
+
+{Configure IPv4 in Linux}
+
+Show IP config (eth0):
+ip addr show eth0 or ifconfig eth0
+
+Remove IP from eth0:
+ip a del 192.168.10.25/24 dev eth0
+or
+ip a flush dev eth0
+
+Add IP to eth0:
+ip a add 192.168.10.119/24 brd + dev eth0
+
+Show routing table:
+route -n
+
+Set default gateway:
+route add default gw 192.168.10.1 eth0
+
+Check DNS servers:
+cat /etc/resolv.conf
+
+Set DNS servers:
+
+
+{Linux System Commands}
+
+Live process view:
+top or htop
+
+List all processes:
+ps -A
+
+Running Firefox in background then,
+
+Find Firefox PID:
+ps -A | grep firefox
+
+Kill process by PID:
+kill <PID of firefox>
+
+Check for upgrades:
+apt dist-upgrade -y
+
+Remove unused packages:
+apt autoremove -y
+
+Upgrade packages:
+apt upgrade -y
