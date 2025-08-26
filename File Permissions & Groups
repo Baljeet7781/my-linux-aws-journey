@@ -1,0 +1,61 @@
+Linux File Permissions:
+
+Viewing default permissions
+Setting permissions using absolute mode
+Setting permissions using symbolic mode
+Managing file and directory ownership
+Understanding Ownership and Permissions
+When a user creates a file or directory, they automatically become its owner.
+Use ls -l to view permissions and ownership.
+Use stat -c %a <filename> to display permissions in absolute (octal) mode.
+
+Octal Permission Values
+Value	Symbol	Description
+0	—	No access
+1	x	Execute
+2	w	Write
+3	wx	Write and execute
+4	r	Read
+5	rx	Read and execute
+6	rw	Read and write
+7	rwx	Read, write, and execute
+
+
+Setting Permissions with Absolute Mode
+chmod 764 file1     # rwx for user, rw for group, r for others
+chmod 664 file2     # rw for user, rw for group, r for others
+chmod 440 file3     # r for user and group, none for others
+chmod 750 dirA      # rwx for user, rx for group, none for others
+chmod -R 760 dirA   # recursively apply rwx for user, rw for group, none for others
+
+Setting Permissions with Symbolic Mode
+Symbolic mode uses:
+chmod u+x file2                     # add execute for user
+chmod u+rw,g+rw,o+r file2           # rw for user/group, r for others
+chmod ug+r,o= file2                 # r for user/group, none for others
+
+
+u (user), g (group), o (others)
++ (add), - (remove), = (set)
+r, w, x for read, write, execute
+
+Managing Ownership and Group Associations
+
+Create a user with a home directory:
+useradd -m user02
+
+Create a group:
+groupadd group02
+
+Change file ownership:
+chown user02 file2         # Set user02 as owner
+chown :group02 file2       # Set group02 as group
+chown user02:group02 file3 # Set both owner and group
+
+Recursively change ownership of a directory and its contents:
+chown -R labuser dirA
+
+Change group using chgrp:
+chgrp group02 file1
+
+Tip: Prefer chown user:group for both changes—it’s simpler and more consistent than switching between chown and chgrp.
