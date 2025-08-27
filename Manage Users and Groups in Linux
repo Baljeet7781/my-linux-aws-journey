@@ -1,0 +1,76 @@
+Manage Users and Groups in Linux
+
+Create users
+useradd -m user1
+
+
+-m creates home directory.
+
+useradd -m user2
+useradd -m user3
+useradd -m user4
+
+
+or in one go:
+
+for u in user2 user3 user4; do useradd -m "$u"; done
+
+useradd -m -e 2026-01-31 -c "User Five" -s /bin/ksh user5
+Creates user5 with expiry date, full name, and shell.
+Check user info
+
+tail /etc/passwd
+Shows last 10 entries.
+
+usermod -c "User Two" user2
+Adds comment to user2.
+
+usermod -e 2026-01-08 user3
+Sets expiry for user3.
+
+cat /etc/shadow | tail -n 10
+Check password/expiry info.
+
+Delete user
+userdel -r user10
+
+----------------------------------------------------------------------------
+Removes user + home directory.
+
+Groups
+groupadd groupA
+
+for g in groupB groupC groupD groupE; do groupadd "$g"; done
+
+groupmod -g 4000 groupD
+Change GID for groupD.
+
+tail -n 10 /etc/group
+Check last 10 groups.
+
+-----
+Add user to groups
+usermod -aG groupA user1
+
+
+Verify:
+id user1
+
+usermod -aG groupA,groupB user2
+
+
+Remove user2 from groupB but keep in groupA:
+usermod -G groupA user2
+
+Delete group
+usermod -aG groupE user5
+id user5
+groupdel groupE
+
+
+Verify:
+tail -n 10 /etc/group
+tail -n 10 /etc/passwd
+
+
+groupE deleted, but user5 still exists.
