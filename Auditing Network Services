@@ -45,7 +45,7 @@ Understanding nmap port states
 
 5. open|filtered
   > nmap can't tell if the port is open or filtered
-  > could be open but but hidden by a firewall
+  > could be open but hidden by a firewall
 
 6. closed|filtered
   > nmap can't tell if the port is closed or filtered.
