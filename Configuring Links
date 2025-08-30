@@ -1,0 +1,50 @@
+Configure Links in Linux
+------------------------
+
+We will configure links in Linux.
+There are two types of links in Linux:
+
+Hard Link:
+Points directly to the data on disk. Multiple hard links share the same inode. If the original file is deleted, the data remains accessible through other hard links.
+
+Symbolic Link (Soft Link):
+A shortcut that points to another file or directory by path. If the original file is deleted, the symbolic link becomes broken.
+
+Steps:
+Create two directories named /RealData and /DataLink
+mkdir /RealData
+mkdir /DataLink
+
+Create a file named file1 in /RealData and add text:
+"This line entered via the /RealData path"
+nano /RealData/file1
+
+Create a hard link named fileA in /DataLink linked to file1 in /RealData
+ln /RealData/file1 /DataLink/fileA
+
+Edit /DataLink/fileA and add text:
+"This line entered via the /DataLink path."
+nano /DataLink/fileA
+
+
+Create symbolic link
+In your home directory, create a symbolic link named sym-fileA pointing to /DataLink/fileA:
+ln -s /DataLink/fileA sym-fileA
+
+Edit the file using the symbolic link: This line entered via the sym-fileA path
+nano sym-fileA
+
+Delete the file in /DataLink and check the symbolic link
+Delete /DataLink/fileA:
+rm -f /DataLink/fileA 
+or
+rm /DataLink/fileA
+
+when we try to cat the symbolic link it will give an error
+cat sym-fileA
+*error
+
+Find broken symbolic links:
+
+
+Search the /var directory for symbolic links and their destinations:
