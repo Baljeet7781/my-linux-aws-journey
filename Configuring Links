@@ -45,6 +45,9 @@ cat sym-fileA
 *error
 
 Find broken symbolic links:
-
+find -L . -type l
 
 Search the /var directory for symbolic links and their destinations:
+find /var -type l
+find /var -type l | xargs ls -l
+
