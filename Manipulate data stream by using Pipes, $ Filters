@@ -1,0 +1,24 @@
+Searching with grep (find the word 'cron')
+  ls -l /etc | grep cron
+
+Sorting (sort items by size (column 5))
+  ls -l /etc | sort -k 5n
+
+Showing Top/Bottom with tail
+  ls -l /etc | sort -k 5n | tail
+  { -k 5n: sort by the 5th column(file size), numerically}
+  { tail: Shows the last 10 items after sorting. }
+
+Counting with wc -l
+  ls -l /etc | wc-l
+  { wc -l: counts the number of lines}
+
+Running Multiple commands using (;)
+  ls -l /etc | sort -k 5n | tail; ls /etc |wc -l
+  {; Runs two commands separately, 
+    first: show 10 largest file from the bottom
+    second: count total files}
+
+Checking Success with $?
+  echo $? 
+  {0 = success, Non-zero = failure}
