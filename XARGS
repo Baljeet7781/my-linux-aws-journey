@@ -1,0 +1,35 @@
+echo testfile1 testfile2 testfile3 testfile4 | xargs touch
+OR
+for f in testfile1 testfile2 testfile3 testfile4; do echo $f; done | xargs touch
+
+-This is the command we have used to create four files using the | pipe metacharacter and the echo, xargs, and touch commands.
+
+*Xargs is a powerful command utility that can simplify the processing of complex operations, repetitive tasks, batch processing, and large data manipulation. Xargs reads data from standard input (stdin), and then executes the command supplied to it as an argument. By default, xargs reads data separated by blans, and then executes a command once for each argument. Blanks and spaces in the input are treated as delimiters, while blank lines are ignored.
+
+
+cat /home/database | xargs touch
+
+-Here we are checking the content of a database, and creating files of the name that the database contains. We are using | pipe metacharacter, xargs and touch commands.
+
+*The Standard output (stdout) stream of the cat command contains the contents of the /home/database file. The stdout stream becomes a standard input (stdin) stream to the xargs command via a pipe. The xargs command sends the data as a stdout stream to the touch command as four individual argumetns, delimited by a space or new line. The touch command creates and names the separate files based on stdin stream for xargs.
+
+
+ls *db | xargs mv -t /home/data
+
+-Here we are moving the files that contains 'db' at the end. We are using ls to list all the files having 'db' at the end and then passing it to the next command using the | pipe metacharacter. Then we are making use of xargs and mv command and the -t option to move all source files into the directory destination.
+
+
+ls *.db | xargs rename "s/db/txt/"
+
+-Here we are renaming all the files that use .db file name extension to use a .txt file name extension by using the | pipe metacharacter, and the ls, *.db, xargs, and rename command.
+
+*The "s/db/txt/" argument of the rename command renames files passed to it by the xargs command. The s substitutes any occurence of the characters db with the characters txt.
+
+
+ls /home | grep testfile | xargs rm -rf
+
+-Here we are deleting all files in the /home directory that contain testfile in the file name by using the | pipe metacharacter, and the ls, grep, and rm commands.
+
+*The -rf rename option instructs the rename command to recursively (r) remove files (f) within subdirectories, if they exist. You can also delete the testfile files by using the command rm /home/testfile.
+
+
