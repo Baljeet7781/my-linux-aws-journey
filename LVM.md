@@ -4,4 +4,4 @@ Today I am practicing LVM, follow me below--
 
 
 3. Created Volumes to attach to the instances of sizes 1GB, 2GB and 4GB respectively.
-images/screenshot.md/volume_created.png
+my-linux-aws-jouney/images/screenshot.md/volume_created.png
